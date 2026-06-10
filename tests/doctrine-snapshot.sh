@@ -52,7 +52,7 @@ if grep -RIlq "docs/doctrine" "$ROOT/templates"; then
   fail "templates/ must not reference docs/doctrine (use .agently/doctrine runtime snapshot)"
 fi
 
-printf "%s\n" "$readme_doctrine_section" | grep -Fq "Agently source repository" \
+printf "%s\n" "$readme_doctrine_section" | grep -Fq "Agently source-repo-only" \
   || fail "README Doctrine section must qualify docs/doctrine as Agently source-repo-only"
 
 printf "%s\n" "$readme_doctrine_section" | grep -Fq ".agently/doctrine" \
