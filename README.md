@@ -5,7 +5,7 @@ A local-first control plane for bounded agentic development loops.
 Agently runs today as a Bash CLI. It writes workflow state as files, compiles
 bounded context packets, and runs guard/eval checks through detected local tools.
 
-## Hook / Positioning
+## What Agently Is
 
 > Agently is a loop control plane, not a runaway loop runner.
 >
