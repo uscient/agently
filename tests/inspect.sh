@@ -85,6 +85,19 @@ done
 assert_contains "$TMP/grep.out" "[TRUNCATED"
 assert_contains "$TMP/grep.out" "full log:"
 
+# Mask rg so inspect grep takes the grep -R fallback, which must not fail
+# on its own log file under .agently/cache.
+mkdir -p "$TMP/norg-bin"
+ln -s /usr/bin/* "$TMP/norg-bin/" 2>/dev/null || true
+ln -sf /bin/* "$TMP/norg-bin/" 2>/dev/null || true
+rm -f "$TMP/norg-bin/rg"
+if PATH="$TMP/norg-bin" command -v rg >/dev/null 2>&1; then
+  fail "rg still resolvable; grep fallback not exercised"
+fi
+PATH="$TMP/norg-bin" "${AGENTLY[@]}" inspect grep alpha . --max 3 > "$TMP/grep-fallback.out"
+assert_contains "$TMP/grep-fallback.out" "[TRUNCATED"
+assert_contains "$TMP/grep-fallback.out" "full log:"
+
 "${AGENTLY[@]}" inspect tree fixtures --depth 2 > "$TMP/tree.out"
 assert_contains "$TMP/tree.out" "sample.sh"
 

@@ -46,6 +46,10 @@ inspect_emit_log_bounded() {
     omitted=$((lines - max_lines))
     printf '\n[TRUNCATED %s LINES - full log: %s]\n' "$omitted" "$logfile"
     warn "full output logged at $logfile"
+    if (( status != 0 )); then
+      warn "command exited with status $status; log tail:"
+      tail -n 5 "$logfile" >&2
+    fi
   else
     cat "$logfile"
   fi
@@ -156,7 +160,7 @@ inspect_grep_run() {
   if has_cmd rg && [[ "$(agently_bool "$(agently_config_get "$root" inspect prefer_ripgrep)" 2>/dev/null || printf true)" == "true" ]]; then
     rg --line-number --no-heading --color never -- "$pattern" "$target" > "$log" 2>&1
   else
-    grep -R -n -- "$pattern" "$target" > "$log" 2>&1
+    grep -R -n --exclude-dir=.agently --exclude-dir=.git -- "$pattern" "$target" > "$log" 2>&1
   fi
   status=$?
   set -e
