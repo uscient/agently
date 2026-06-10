@@ -1,0 +1,18 @@
+id: {{PATCH_ID}}
+workstream: {{WORKSTREAM_SLUG}}
+status: proposed
+format: {{PATCH_FORMAT}}
+created_at: {{DATETIME}}
+author_agent: {{AUTHOR_AGENT}}
+base_commit: {{BASE_COMMIT}}
+patch_sha256: {{PATCH_SHA256}}
+files: [{{PATCH_FILES}}]
+added_lines: {{ADDED_LINES}}
+removed_lines: {{REMOVED_LINES}}
+check_ran_at:
+check_ok:
+check_log:
+reviewed: false
+review_note:
+applied_at:
+git_status:

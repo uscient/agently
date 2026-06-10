@@ -1,0 +1,62 @@
+project: {{PROJECT}}
+profile: {{PROFILE}}
+agently_version: {{AGENTLY_VERSION}}
+created_at: {{DATETIME}}
+
+agents:
+  codex:
+    model: gpt-5.5
+    reasoning: xhigh
+    auto_edit: true
+  claude:
+    model: opus
+    reasoning: max
+  serena:
+    enabled: false
+    profile: lite
+
+workstreams:
+  branch:
+    mode: manual
+    prefix: workstream/
+    checkout_on_create: true
+    require_clean_tree: true
+    if_exists: fail
+    base: current
+    push_on_create: false
+    set_upstream: false
+    delete_on_close: false
+
+ws:
+  spine:
+    schema_version: 1
+    max_payload_bytes: 5242880
+    lock_timeout_seconds: 10
+    confirm_timeout_seconds: 120
+
+context:
+  default_budget: normal
+  log_tail_lines: 20
+  ledger_tail_lines: 10
+  doctrine_mode: manifest
+  cache_dir: .agently/cache
+
+inspect:
+  prefer_ripgrep: true
+  max_grep_matches: 100
+  max_full_lines: 2000
+  tree_depth: 3
+
+guard:
+  strict_missing_tools: false
+  languages: auto
+
+eval:
+  use_worktree: true
+
+patch:
+  dir: artifacts/patches
+  require_reviewed: true
+
+claude_permission_mode: plan
+claude_max_turns: 6

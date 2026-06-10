@@ -1,0 +1,23 @@
+# Default owner
+* @xormania
+
+# GitHub/repository governance surface
+.github/ @xormania
+CONTRIBUTING.md @xormania
+SECURITY.md @xormania
+SUPPORT.md @xormania
+CODE_OF_CONDUCT.md @xormania
+MAINTAINERS.md @xormania
+README.md @xormania
+NOTICE @xormania
+LICENSE @xormania
+
+# Agently authority/doctrine/control surfaces
+AGENTS.md @xormania
+docs/doctrine/ @xormania
+templates/ @xormania
+
+# Runtime/control-plane implementation
+bin/ @xormania
+lib/ @xormania
+tests/ @xormania

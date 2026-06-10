@@ -1,0 +1,11 @@
+# GENERATED/REVIEWABLE snippet from Agently
+# Generated: {{DATETIME}}
+# Command: {{COMMAND}}
+# Agently version: {{AGENTLY_VERSION}}
+# Serena profile: {{SERENA_PROFILE}}
+# Serena context follows MCP client: codex
+# Verify these tokens against your installed Serena version when Serena is absent.
+[mcp_servers.serena]
+startup_timeout_sec = 15
+command = "{{SERENA_COMMAND}}"
+args = ["start-mcp-server", "--project-from-cwd", "--context=codex"]

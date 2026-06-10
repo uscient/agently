@@ -1,0 +1,10 @@
+# Example Codex configuration for an Agently project.
+# Copy selected settings into your real Codex config if useful.
+
+[projects]
+# Keep Agently workflow files visible and diffable.
+# Do not configure Codex to ignore .agently/.
+
+[agently]
+operator_console = true
+source_of_truth = ".agently"

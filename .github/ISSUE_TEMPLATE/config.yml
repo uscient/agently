@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+
+contact_links:
+  - name: Contact the maintainer
+    url: https://github.com/xormania
+    about: For serious collaboration interest, integration discussion, or maintainer-directed work.
+
+  - name: Security vulnerability
+    url: https://github.com/uscient/agently/security/policy
+    about: Please do not report security vulnerabilities in public issues.
+
+  - name: Repository overview
+    url: https://github.com/uscient/agently
+    about: Review the README before opening questions about project maturity, roadmap, or support.

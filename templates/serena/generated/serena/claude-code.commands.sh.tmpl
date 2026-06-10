@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# GENERATED/REVIEWABLE snippet from Agently
+# Generated: {{DATETIME}}
+# Command: {{COMMAND}}
+# Agently version: {{AGENTLY_VERSION}}
+# Serena profile: {{SERENA_PROFILE}}
+# Serena context follows MCP client: claude-code
+# Verify these tokens against your installed Serena version when Serena is absent.
+set -euo pipefail
+
+# Project-scoped Claude Code MCP registration.
+claude mcp add serena -- {{SERENA_COMMAND}} start-mcp-server --context claude-code --project "$(pwd)"
+
+# User-scoped alternative:
+# claude mcp add --scope user serena -- {{SERENA_COMMAND}} start-mcp-server --context claude-code --project-from-cwd

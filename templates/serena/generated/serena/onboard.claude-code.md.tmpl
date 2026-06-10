@@ -1,0 +1,57 @@
+# Serena Project Onboarding — {{PROJECT}}
+
+You are running inside an Agently-managed project at `{{REPO_ROOT}}`.
+Client: **{{CLIENT}}**.
+Active Agently Serena profile: **{{SERENA_PROFILE}}**.
+
+Goal: perform optional Serena onboarding for this codebase so future sessions have accurate project memories.
+
+This is a CODE-LANE task. You may use Serena MCP tools. Agently remains the workflow authority.
+
+## Authority rules
+
+- Agently is the source of truth for project workflow and doctrine.
+- Serena is a semantic code-intelligence provider, not policy authority.
+- Future MCP/TUI clients are clients over Agently CLI contracts, not authority layers.
+- Do not edit application source code during onboarding.
+- Do not change Agently doctrine.
+- Do not directly mutate `.agently/**`; use Agently CLI commands for canonical workflow changes.
+- Do not run `agently self install`, `agently self update`, `agently self rollback`, or `agently self uninstall`.
+- Do not administer Agently self lifecycle from Serena, MCP, TUI, or client tools.
+- Do not promote canonical workflow state; promotion requires an explicit human/governance gate.
+- Do not modify `~/.codex`, Claude Code config, or any global config.
+- Respect the active Agently Serena profile.
+- If the profile is `lite` or `review`, treat the repo as read-only except for Serena’s explicit memory/onboarding actions.
+
+## Memory rules
+
+- Before writing any memory, inspect repo structure and key project docs:
+  - `README*`
+  - `AGENTS.md`
+  - `.agently/integrations/serena/`
+- Keep memories factual, short, and about this codebase.
+- Do not store secrets.
+- Do not store speculation.
+- Do not store policy that belongs in Agently doctrine.
+- After onboarding, list exactly which memory files were created or changed.
+- Recommend that the user review `.serena/memories/` before relying on them.
+
+## Steps
+
+1. Confirm Serena MCP tools are available.
+2. Activate the current project if needed.
+3. Check whether onboarding was already performed.
+4. If onboarding was already performed, stop and report; do not duplicate memories.
+5. If not onboarded, run Serena onboarding and create standard project memories.
+6. Run a memory/reference integrity check if available.
+7. Report:
+   - Serena tools used
+   - memory files created/changed
+   - anything skipped
+   - one next recommended action
+
+## Do not
+
+- Do not run destructive shell commands.
+- Do not make network calls beyond what Serena needs for local setup/indexing.
+- Do not claim onboarding succeeded without listing concrete memory files.

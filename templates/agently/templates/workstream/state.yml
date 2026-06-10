@@ -1,0 +1,5 @@
+slug: {{SLUG}}
+title: {{TITLE}}
+created_at: {{DATETIME}}
+branch:
+{{BRANCH_METADATA}}

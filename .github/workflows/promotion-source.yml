@@ -1,0 +1,41 @@
+name: Promotion source
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source:
+    name: Require dev source for main
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Verify promotion source
+        run: |
+          if [ "${{ github.event_name }}" != "pull_request" ]; then
+            echo "Manual run; source guard is only enforced for pull requests."
+            exit 0
+          fi
+
+          if [ "${{ github.event.pull_request.head.repo.full_name }}" != "${{ github.repository }}" ]; then
+            echo "PRs into main must come from the same repository."
+            exit 1
+          fi
+
+          if [ "${{ github.head_ref }}" != "dev" ]; then
+            echo "PRs into main must come from dev."
+            echo "Actual source branch: ${{ github.head_ref }}"
+            exit 1
+          fi
+
+          echo "Promotion source accepted: dev -> main."

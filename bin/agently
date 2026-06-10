@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ "${BASH_SOURCE[0]}" != "$0" ]]; then
+  echo "FAIL: agently must be executed, not sourced" >&2
+  return 1 2>/dev/null || exit 1
+fi
+
+if [[ -n "${AGENTLY_HOME:-}" && -f "$AGENTLY_HOME/lib/agently.sh" ]]; then
+  share="$AGENTLY_HOME"
+else
+  self="$(realpath "$0")"
+  root="$(dirname "$(dirname "$self")")"
+  if [[ -f "$root/lib/agently.sh" ]]; then
+    share="$root"
+  else
+    echo "FAIL: cannot locate agently lib. Reinstall or set AGENTLY_HOME." >&2
+    exit 1
+  fi
+fi
+
+export AGENTLY_SHARE="$share"
+exec bash "$share/lib/agently.sh" "$@"

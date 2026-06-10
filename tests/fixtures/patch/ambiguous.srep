@@ -1,0 +1,6 @@
+@@ file: dup.txt
+<<<<<<< SEARCH
+dup
+=======
+changed
+>>>>>>> REPLACE

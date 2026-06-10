@@ -1,0 +1,17 @@
+id: {{ID}}
+slug: {{SLUG}}
+workstream: {{WORKSTREAM_SLUG}}
+status: draft
+created_at: {{DATETIME}}
+updated_at: {{DATETIME}}
+round: 0
+current_claude_handoff:
+current_codex_eval:
+# Latest handoff provenance. Generic by design; full invocation details belong
+# in handoff receipts or audit events.
+last_handoff_role:
+last_handoff_agent:
+last_handoff_model:
+last_handoff_reasoning:
+last_handoff_profile:
+last_handoff_path:

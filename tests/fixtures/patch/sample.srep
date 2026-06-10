@@ -1,0 +1,6 @@
+@@ file: hello.txt
+<<<<<<< SEARCH
+hello patched
+=======
+hello from srep
+>>>>>>> REPLACE

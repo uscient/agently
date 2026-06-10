@@ -1,0 +1,53 @@
+name: Authority
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  protected-surfaces:
+    name: Protected surfaces
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Run protected surface tests
+        run: ./tests/protected-surfaces.sh
+
+  authority-patch-lock:
+    name: Authority patch lock
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Run authority patch lock tests
+        run: ./tests/authority-patch-lock.sh
+
+  doctrine-snapshot:
+    name: Doctrine snapshot
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Run doctrine snapshot tests
+        run: ./tests/doctrine-snapshot.sh
