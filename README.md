@@ -2,8 +2,6 @@
 
 A local-first control plane for bounded agentic development loops.
 
-Status: pre-release | v0.5.0 | CLI-only | Bash core | alpha - not production-ready
-
 Agently runs today as a Bash CLI. It writes workflow state as files, compiles
 bounded context packets, and runs guard/eval checks through detected local tools.
 
@@ -20,42 +18,42 @@ not a model, IDE, cloud service, or CI system; it does not write code or operate
 agents for you. Its state is local files under `.agently/`, so the loop stays
 visible, diffable, and under developer authority.
 
-| Agently is | Agently is not |
-| --- | --- |
-| A control plane for bounded agent-assisted loops. | An autonomous coding agent or model provider. |
-| Local, file-backed workflow state under `.agently/`. | A SaaS, daemon, database, dashboard, or cloud orchestrator. |
-| A compiler for copy-safe packets, prompts, evidence, and handoffs. | An IDE, CI/CD platform, or generic agent framework. |
-| A guard/eval and reviewable patch surface for local checks. | A runaway retry engine or auto-promotion system. |
-| A review gate around candidate work. | A replacement for maintainer approval. |
-| Tool-agnostic around external agents/tools. | An integration with every named coding tool. |
+| Agently is                                                         | Agently is not                                              |
+| ------------------------------------------------------------------ | ----------------------------------------------------------- |
+| A control plane for bounded agent-assisted loops.                  | An autonomous coding agent or model provider.               |
+| Local, file-backed workflow state under `.agently/`.               | A SaaS, daemon, database, dashboard, or cloud orchestrator. |
+| A compiler for copy-safe packets, prompts, evidence, and handoffs. | An IDE, CI/CD platform, or generic agent framework.         |
+| A guard/eval and reviewable patch surface for local checks.        | A runaway retry engine or auto-promotion system.            |
+| A review gate around candidate work.                               | A replacement for maintainer approval.                      |
+| Tool-agnostic around external agents/tools.                        | An integration with every named coding tool.                |
 
 ## Core Concepts
 
-- **loop control plane** - the layer that names, sequences, and gates the steps
+* **loop control plane** - the layer that names, sequences, and gates the steps
   of an agent-assisted development loop; it coordinates the work around your
   coding agents instead of doing the coding.
-- **bounded loop** - a cycle with an explicit start, explicit scope, compiled
+* **bounded loop** - a cycle with an explicit start, explicit scope, compiled
   context instead of the whole repo, and an explicit review gate to close it.
-- **packet** - a compiled, copy-safe Markdown context surface for a role/agent,
+* **packet** - a compiled, copy-safe Markdown context surface for a role/agent,
   built from file-backed state with size budgets.
-- **handoff** - a recorded request/response exchange passed between roles or
+* **handoff** - a recorded request/response exchange passed between roles or
   agents so work transfers as durable files, not hidden chat state.
-- **gate** - a required human decision point, such as accept, revise, reject, or
+* **gate** - a required human decision point, such as accept, revise, reject, or
   promote, before anything becomes canonical workflow state.
-- **guard / eval** - local validation; guard runs bounded checks through
+* **guard / eval** - local validation; guard runs bounded checks through
   detected tools, and eval aggregates guard evidence or checks proposed patches
   inside a throwaway git worktree.
-- **local-first** - Agently runs on your machine from visible files; no daemon,
+* **local-first** - Agently runs on your machine from visible files; no daemon,
   database, dashboard, or hidden network calls.
-- **human authority** - agent output is candidate context until reviewed; the
+* **human authority** - agent output is candidate context until reviewed; the
   developer or maintainer remains the final authority.
-- **MCP** - Model Context Protocol. Agently currently has optional MCP config
+* **MCP** - Model Context Protocol. Agently currently has optional MCP config
   helper commands for Serena; a dedicated workflow adapter, `agently-mcp`, is
   planned/deferred and not implemented in this Bash core.
-- **doctrine / project rules** - versioned Markdown rules under
-  `docs/doctrine/` defining authority, scope, command contracts, and safety
-  boundaries; `init` copies a read-only snapshot into `.agently/doctrine/`, and
-  `agently guard doctrine` checks drift.
+* **doctrine / project rules** - versioned Markdown rules whose canonical source
+  lives in Agently source-repo-only `docs/doctrine/`; `init` copies a read-only
+  runtime/reference snapshot into `.agently/doctrine/`, and `agently guard
+  doctrine` checks drift.
 
 ## How Agently Works: The Loop
 
@@ -149,27 +147,34 @@ agently decide accept --workstream main --task implementation-pass --note "Accep
 
 ## Current Scope & Roadmap
 
-| Current in v0.5.0 pre-release | Directional or deferred |
-| --- | --- |
-| Bash CLI under `bin/` and `lib/`. | Packaged or remote install paths. |
-| Managed user-local `self install`, `self status`, and `self uninstall`. | Self update and rollback. |
+| Current in v0.5.0 pre-release                                                                                                                                 | Directional or deferred                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| Bash CLI under `bin/` and `lib/`.                                                                                                                             | Packaged or remote install paths.                                                          |
+| Managed user-local `self install`, `self status`, and `self uninstall`.                                                                                       | Self update and rollback.                                                                  |
 | `init`, `doctor`, `status`, workstreams, tasks, docs, packets, prompts, context, compact, inspect, evidence, report, decide, guard, eval, and patch commands. | Richer packet diagnostics, broader guard adapters, and project migration/template refresh. |
-| File-backed `.agently/` state, handoffs, decisions, and doctrine snapshots. | A dedicated `agently-mcp` workflow adapter in a separate Python project. |
-| Reviewable patch lane with `patch apply` gated by `--reviewed`; Git remains source-control authority. | A separate future TUI client over CLI contracts. |
-| Optional Serena capability pack and explicit MCP config helper commands. | Full Serena setup automation or Agently-owned semantic code-intelligence reports. |
+| File-backed `.agently/` state, handoffs, decisions, and doctrine snapshots.                                                                                   | A dedicated `agently-mcp` workflow adapter in a separate Python project.                   |
+| Reviewable patch lane with `patch apply` gated by `--reviewed`; Git remains source-control authority.                                                         | A separate future TUI client over CLI contracts.                                           |
+| Optional Serena capability pack and explicit MCP config helper commands.                                                                                      | Full Serena setup automation or Agently-owned semantic code-intelligence reports.          |
 
 Out of scope for this Bash core today: production readiness, a daemon, database,
 web UI, dashboard, embedded MCP server, autonomous source mutation, CI/CD
 replacement, enterprise RBAC/SSO, hidden global config mutation, and hidden
 network behavior.
 
-Doctrine and project rules live in `docs/doctrine/`. For development on
-Agently itself, those files define authority, architecture, command contracts,
-safety boundaries, testing, packet behavior, MCP boundaries, and roadmap
-discipline. Initialized projects receive a read-only snapshot under
-`.agently/doctrine/` so project-local loops can inspect the same rules.
+## Doctrine
 
-Development validation:
+`docs/doctrine/` is Agently source-repo-only. It is the canonical doctrine source
+for Agently development, defining authority, architecture, command contracts,
+safety boundaries, testing, packet behavior, MCP boundaries, and roadmap
+discipline.
+
+Initialized projects receive a read-only snapshot under `.agently/doctrine/` so
+project-local loops can inspect the same rules. That snapshot is runtime
+reference material only; it does not make `docs/doctrine/` target-project
+authority, and Agently runtime commands do not get write authority over doctrine
+source.
+
+## Development Validation
 
 ```bash
 bash -n bin/agently lib/*.sh tests/*.sh
