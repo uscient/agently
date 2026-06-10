@@ -17,7 +17,7 @@ permissions:
 jobs:
   syntax:
     name: Shell syntax
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout
@@ -30,7 +30,7 @@ jobs:
 
   shellcheck:
     name: ShellCheck
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout
@@ -38,23 +38,25 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Install ShellCheck
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y shellcheck
+      - name: Install pinned ShellCheck
+        run: scripts/install-shellcheck.sh
 
       - name: Run ShellCheck
         run: shellcheck bin/agently lib/*.sh tests/*.sh
 
   smoke:
     name: Smoke tests
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           persist-credentials: false
+
+      - name: Install pinned ShellCheck
+        run: scripts/install-shellcheck.sh
 
       - name: Run smoke tests
         run: ./tests/smoke.sh

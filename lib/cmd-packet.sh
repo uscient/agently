@@ -241,7 +241,8 @@ packet_doctrine_manifest_section() {
 }
 
 packet_agent_rules_section() {
-  local root="$1" budget="$2" file="$root/AGENTS.md"
+  local root="$1" budget="$2" file
+  file="$root/AGENTS.md"
   printf '<agent_rules>\n'
   if [[ ! -f "$file" ]]; then
     printf '_(AGENTS.md missing)_\n'

@@ -4,6 +4,7 @@ set -euo pipefail
 
 if [[ "${BASH_SOURCE[0]}" != "$0" ]]; then
   echo "FAIL: agently lib must be executed, not sourced" >&2
+  # shellcheck disable=SC2317
   return 1 2>/dev/null || exit 1
 fi
 

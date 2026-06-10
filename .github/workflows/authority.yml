@@ -15,7 +15,7 @@ permissions:
 jobs:
   protected-surfaces:
     name: Protected surfaces
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout
@@ -28,7 +28,7 @@ jobs:
 
   authority-patch-lock:
     name: Authority patch lock
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout
@@ -41,7 +41,7 @@ jobs:
 
   doctrine-snapshot:
     name: Doctrine snapshot
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout

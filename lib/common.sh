@@ -780,7 +780,8 @@ extract_skeleton_for_file() {
 }
 
 structural_digest_for_file() {
-  local file="$1" rel="${2:-$file}" lang lines bytes sha
+  local file="$1" rel lang lines bytes sha
+  rel="${2:-$file}"
   lang="$(detect_language_for_file "$file")"
   lines="$(line_count "$file")"
   bytes="$(byte_count "$file")"

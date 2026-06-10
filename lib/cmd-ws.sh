@@ -321,7 +321,8 @@ workstream_branch_prepare() {
 }
 
 workstream_state_branch_get() {
-  local dir="$1" key="$2" file="$dir/state.yml"
+  local dir="$1" key="$2" file
+  file="$dir/state.yml"
   [[ -f "$file" ]] || return 0
   awk -v key="$key" '
     /^[^[:space:]#][^:]*:/ {

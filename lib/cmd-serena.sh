@@ -318,7 +318,8 @@ serena_mcp_claude_state() {
 }
 
 serena_memory_snapshot_lines() {
-  local root="$1" dir="$root/.serena/memories" file rel size mtime
+  local root="$1" dir file rel size mtime
+  dir="$root/.serena/memories"
   [[ -d "$dir" ]] || return 0
   while IFS= read -r file; do
     rel="$(rel_to_root "$root" "$file")"

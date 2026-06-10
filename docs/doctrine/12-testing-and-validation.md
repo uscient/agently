@@ -33,6 +33,10 @@ If available:
 shellcheck bin/agently lib/*.sh tests/*.sh
 ```
 
+CI/dev shell tooling is pinned through `ci/toolchain.env`.
+To upgrade ShellCheck, update the version and platform SHA256 values there,
+then verify with `scripts/install-shellcheck.sh` and the normal validation suite.
+
 ## Smoke Test Doctrine
 
 The smoke test SHOULD cover:

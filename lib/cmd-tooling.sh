@@ -110,7 +110,8 @@ profile_value_from_file_or_default() {
 }
 
 profile_ensure_gitignore() {
-  local root="$1" file="$root/.agently/.gitignore" tmp
+  local root="$1" file tmp
+  file="$root/.agently/.gitignore"
   mkdir -p "$root/.agently"
   if [[ ! -f "$file" ]]; then
     printf 'local.yml\ncache/\n' > "$file"

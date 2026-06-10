@@ -15,7 +15,7 @@ permissions:
 jobs:
   security-adversarial:
     name: Security adversarial
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout
@@ -28,7 +28,7 @@ jobs:
 
   config-allowlist:
     name: Config allowlist
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout
